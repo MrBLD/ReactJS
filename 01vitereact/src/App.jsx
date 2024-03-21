@@ -1,14 +1,17 @@
-import Chai from "./Chai.jsx"
+
+
+import Chai from "./chai"
 
 
 function App() {
+  const username = "chai aur code"
+
   return (
-    // <h1>Chai aur code on vite</h1>
     <>
-      <Chai/>
-      <h1> chai aur react</h1>
-      <p>test para</p>
-    </>
+    <Chai/>
+    <h1>chai aur react {username}</h1>
+    <p>test para</p>
+   </>
   )
 }
 
