@@ -1,11 +1,11 @@
 
-import Chai from './chai.js';
+import Chai from './Chai.js';
 
 function App() {
   return (
     <>
     <Chai/>
-    {/* <h1>chai aur react</h1> */}
+    <h1>chai aur react</h1>
     </>
   );
 }
