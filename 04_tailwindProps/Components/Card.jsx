@@ -1,9 +1,9 @@
 import React from 'react'
 
-function Card({username, btntext='Clickit'}) {
+function Card({ username, btntext = 'Clickit' }) {
     // console.log(props.username);
     return (
-        <div class="relative h-[400px] w-[300px] rounded-md">
+        <div class="flex-initial relative h-[400px] w-[300px] rounded-md p-1">
             <img
                 src="https://images.unsplash.com/photo-1602233158242-3ba0ac4d2167?q=80&w=1936&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                 alt="AirMax Pro"
@@ -17,11 +17,10 @@ function Card({username, btntext='Clickit'}) {
                     debitis?
                 </p>
                 <button class="mt-2 inline-flex cursor-pointer items-center text-sm font-semibold text-white">
-                    {btntext||"Visit Me"} →
+                    {btntext || "Visit Me"} →
                 </button>
             </div>
         </div>
-
     )
 }
 

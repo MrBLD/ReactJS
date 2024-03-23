@@ -13,9 +13,12 @@ function App() {
 
   return (
     <>
+
       <h1 className='bg-green-400 text-black p-4 rounded-xl mb-4'>TailWind Test</h1>
-      <Card username="Lucy" btntext='Press Me'/>
+    <div class="flex flex-wrap p-1">
+        <Card username="Lucy" btntext='Press Me'/>
       <Card username="Lia" btntext='Touch Me'/>
+      </div>
     </>
   )
 }
