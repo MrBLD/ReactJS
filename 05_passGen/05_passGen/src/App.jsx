@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect} from 'react'
+import { useState, useCallback, useEffect, useRef} from 'react'
 
 function App() {
   const [length, setlength] = useState(8)
@@ -6,6 +6,11 @@ function App() {
   const [charAllowed, setcharAllowed] = useState(false)
   const [password, setPassword] = useState("")
 
+  // useRef hook is used to store a value that will not cause a re-render when changed
+  // used here just for reference properties here select
+  const passwordRef=useRef(null)
+
+  // useCallback hook memorises the function either complete or a part of the function
   const passGen = useCallback(() => {
     let pass = ""
     let str =
@@ -18,10 +23,20 @@ function App() {
     }
     setPassword(pass)
   }, [length, numAllowed, charAllowed, setPassword])
+  // used setpassword instead of password because password is a state variable changing within th function and will create infinite loop
 
+  const copyPasswordToClipboard=useCallback(() =>{
+    window.navigator.clipboard.writeText(password)
+
+    passwordRef.current?.select()
+    passwordRef.current?.setSelectionRange(0,length)
+  }, [password])
+
+  // runs when page loads or any dependencies changes
   useEffect(()=>{
     passGen()
   }, [length, numAllowed, charAllowed, passGen])
+
   return (
     <>
       <div className="w-full max-w-md mx-auto shadow-md rounded-lg px-4 py-3 my-8 bg-gray-800 text-cyan-500">
@@ -33,8 +48,11 @@ function App() {
             className="outline-none w-full py-1 px-3"
             placeholder="Password"
             readOnly
+            ref={passwordRef}
           />
-          <button className='outline-none bg-blue-700 text-white px-3 py-0.5 shrink-0'>copy</button>
+          <button 
+          onClick={copyPasswordToClipboard}
+          className='outline-none bg-blue-700 text-white px-3 py-0.5 shrink-0'>Copy</button>
         </div>
         <div className='flex text-sm gap-x-2'>
           <div className='flex items0center gap-x-1'>
