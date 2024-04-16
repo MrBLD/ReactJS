@@ -1,8 +1,8 @@
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useEffect} from 'react'
 
 function App() {
   const [length, setlength] = useState(8)
-  const [numAllowed, setnumAllowed] = useState(false)
+  const [numAllowed, setnumAllowed] = useState(false);
   const [charAllowed, setcharAllowed] = useState(false)
   const [password, setPassword] = useState("")
 
@@ -19,9 +19,12 @@ function App() {
     setPassword(pass)
   }, [length, numAllowed, charAllowed, setPassword])
 
+  useEffect(()=>{
+    passGen()
+  }, [length, numAllowed, charAllowed, passGen])
   return (
     <>
-      <div className="w-full max-w-md mx-auto shadow-md rounded-lg px-4 py-3 my-8 bg-gray-800 text-yellow-400">
+      <div className="w-full max-w-md mx-auto shadow-md rounded-lg px-4 py-3 my-8 bg-gray-800 text-cyan-500">
         <h1 className='text-white text-center my-3'>Password generator</h1>
         <div className="flex shadow rounded-lg overflow-hidden mb-4">
           <input
@@ -40,25 +43,25 @@ function App() {
               max={101}
               value={length}
               className='cursor-pointer'
-              onChange={(e) => setLength(e.target.value)}
+              onChange={(e) => setlength(e.target.value)}
             />
             <label>Length: {length}</label>
           </div>
           <div>
             <input type="checkbox"
-              defaultChecked{numAllowed}
+              defaultChecked= {numAllowed}
               id='numberInput'
               onChange={() => {
                 setnumAllowed((prev) => !prev)
-              }} />
+              }} /> Numbers
           </div>
           <div>
             <input type="checkbox"
-              defaultChecked{charAllowed}
+              defaultChecked={charAllowed}
               id='characterInput'
               onChange={() => {
                 setcharAllowed((prev) => !prev)
-              }} />
+              }} /> Characters
           </div>
         </div>
       </div>
